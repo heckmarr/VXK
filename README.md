@@ -1,4 +1,4 @@
-*###VXK
+VXK
 
 This is a historical repository of
 Oculus Quest 2 .apks
