@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class floatingDVORAK : MonoBehaviour
+public class floatingDVORAK_R : MonoBehaviour
 {
     public GameObject gonne;
     public GameObject[] row1;
@@ -14,12 +14,9 @@ public class floatingDVORAK : MonoBehaviour
     private float spinEnd;
     private float radiusAdded;
     private float oldRadius;
-    private Renderer backdrop;
     // Start is called before the first frame update
     void Start()
     {
-        backdrop = gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-        backdrop.enabled = false;
         rend = gameObject.GetComponent<Renderer>();
         rend.enabled = false;
         shown = false;
@@ -68,31 +65,18 @@ public class floatingDVORAK : MonoBehaviour
     {
         
         bool frame = false;
-        if (Input.GetButtonDown("XRI_Right_GripButton")  && gonne.name == "right" || Input.GetButtonDown("XRI_Left_GripButton") && gonne.name == "left")
+        if (Input.GetButtonDown("XRI_Right_GripButton"))
         {
             rend.enabled = true;
-            backdrop.enabled = true;
             shown = true;    
         }
-        if (Input.GetButtonUp("XRI_Right_GripButton") && gonne.name == "right" || Input.GetButtonUp("XRI_Left_GripButton") && gonne.name == "left")
+        if (Input.GetButtonUp("XRI_Right_GripButton"))
         {
-            backdrop.enabled = false;
             rend.enabled = false;
             shown = false;
         }
         //draw the keyboard
-        float angleOne = 0.0f;
-        float angleTwo = 0.0f;
-        if (gonne.name == "right")
-        {
-            angleOne = 0.0f;
-            angleTwo = 90.0f;
-        }else if (gonne.name == "left")
-        {
-            angleOne = 270.0f;
-            angleTwo = 360.0f;
-        }
-        List<Vector3> verts = createVertices(angleOne, angleTwo);
+        List<Vector3> verts = createVertices(0.0f, 90.0f);
         for (int i = 0; i < verts.Count; i++)
         {
 
@@ -109,7 +93,6 @@ public class floatingDVORAK : MonoBehaviour
                 
 
                 row1[i].transform.position = verts[i];
-                row1[i].transform.rotation = gonne.transform.rotation;
 
                 
             }
